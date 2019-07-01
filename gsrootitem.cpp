@@ -1,5 +1,8 @@
 #include "gsrootitem.h"
 #include <QDebug>
+#include "gsshapebaseitem.h"
+#include "gsshapelineitem.h"
+#include <QGraphicsScene>
 
 GsRootItem::GsRootItem(const QSizeF &size, QGraphicsObject *parent):
     QGraphicsObject (parent),
@@ -7,10 +10,13 @@ GsRootItem::GsRootItem(const QSizeF &size, QGraphicsObject *parent):
 {
     m_pTempLayer = new GsTempCanvasLayer(size,this);
     m_pTempLayer->setZValue(10);
+
+    m_pShapeFactory = new GsShapeFactory();
 }
 
 GsRootItem::~GsRootItem()
 {
+    SAFE_DELETE(m_pShapeFactory);
 }
 
 void GsRootItem::drawPress(int id, const QPointF &p)
@@ -80,9 +86,7 @@ void GsRootItem::drawRealShape(GsShapeType type, QPointF p1, QPointF p2)
         rect.setWidth(qAbs(p1.x() - p2.x()));
         rect.setHeight(qAbs(p1.y() - p2.y()));
     }
-
-//    rect.setWidth(qMax(qAbs(p1.x() - p2.x()),qAbs(p1.y() - p2.y())));
-//    rect.setHeight(qMax(qAbs(p1.x() - p2.x()),qAbs(p1.y() - p2.y())));
-    GsShapeItem * item = new GsShapeItem(type,rect,this);
+    rect.adjust(-5,-5,5,5);
+    GsShapeBaseItem * item = m_pShapeFactory->getShapeItem(type,rect,this);
     item->drawShape(p1,p2);
 }

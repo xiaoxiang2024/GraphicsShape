@@ -22,17 +22,30 @@ DEFINES += QT_DEPRECATED_WARNINGS
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
+INCLUDEPATH += shape/
 
 SOURCES += \
         main.cpp \
         gsmainscene.cpp \
-    gsshapeitem.cpp \
+#    gsshapeitem.cpp \
     gstempcanvaslayer.cpp \
-    gsrootitem.cpp
+    gsrootitem.cpp \
+    shape/gsshapebaseitem.cpp \
+    shape/gsshapelineitem.cpp \
+    shape/gsshapefactory.cpp \
+    shape/gsshaperectangeitem.cpp \
+    shape/gsshapecircleitem.cpp \
+    shape/gsshapeovalitem.cpp
 
 HEADERS += \
         gsmainscene.h \
     gscommondef.h \
-    gsshapeitem.h \
+#    gsshapeitem.h \
     gstempcanvaslayer.h \
-    gsrootitem.h
+    gsrootitem.h \
+    shape/gsshapebaseitem.h \
+    shape/gsshapelineitem.h \
+    shape/gsshapefactory.h \
+    shape/gsshaperectangeitem.h \
+    shape/gsshapecircleitem.h \
+    shape/gsshapeovalitem.h

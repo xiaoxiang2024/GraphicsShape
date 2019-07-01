@@ -23,7 +23,6 @@ private:
     GsShapeType m_type;
     QPointF m_firstPoint;   //起始点
     QPointF m_lastPoint;    //最新点
-    QSizeF m_size;
 };
 
 #endif // GSSHAPEITEM_H

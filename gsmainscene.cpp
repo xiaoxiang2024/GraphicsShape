@@ -3,6 +3,7 @@
 #include <QKeyEvent>
 #include <QPixmapCache>
 #include <QDebug>
+#include "gsshapebaseitem.h"
 
 GsMainScene::GsMainScene(const QSizeF &size, QObject *parent)
     : QGraphicsScene(QRectF(0, 0, size.width(), size.height()), parent)
@@ -87,7 +88,14 @@ bool GsMainScene::isHitItem(QPointF p)
 {
     QList<QGraphicsItem*> items = this->items(p);
     foreach (QGraphicsItem * item,items) {
-        if(item->type() == Type_ShapeItem){
+        GsShapeBaseItem * i = dynamic_cast<GsShapeBaseItem*>(item);
+        if(!i){
+            continue;
+        }
+        if(i->type() == Type_ShapeItem){
+            if(i->hasSelected(p)){
+                return true;
+            }
             return true;
         }
     }

@@ -5,6 +5,7 @@
 #include "gstempcanvaslayer.h"
 #include "gscommondef.h"
 #include "gsshapeitem.h"
+#include "gsshapefactory.h"
 
 struct ShapeInfo
 {
@@ -42,7 +43,7 @@ private:
     GsTempCanvasLayer * m_pTempLayer = nullptr;
     QMap<int,ShapeInfo> m_Objs;
     GsShapeType m_curType = Shape_Line;
-
+    GsShapeFactory * m_pShapeFactory = nullptr;
 
 };
 
